@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+  </head>
+  <body ng-app="starter">
+
+    <ion-pane>
+      <ion-header-bar class="bar-stable">
+        <h1 class="title">calculator</h1>
+      </ion-header-bar>
+      <ion-content>
+          <div class="card">
+            <center><h2>
+            <div class ="button-bar">
+                 <a id ="life" class ="button"></a>
+            </div>
+             </h2>
+          </div>
+          <div class ="button-bar">
+              <a class ="button" onclick="display('7')">7</a>
+              <a class ="button" onclick="display('8')">8</a>
+              <a class ="button" onclick="display('9')">9</a>
+              <a class ="button" onclick="operation('/')">/</a>
+          </div>
+          <br/>
+          <div class ="button-bar">
+              <a class ="button" onclick="display('4')">4</a>
+              <a class ="button" onclick="display('5')">5</a>
+              <a class ="button" onclick="display('6')">6</a>
+              <a class ="button" onclick="operation('*')">*</a>
+          </div>
+          <br/>
+          <div class ="button-bar">
+               <a class ="button" onclick="display('1')">1</a>
+               <a class ="button" onclick="display('2')">2</a>
+               <a class ="button" onclick="display('3')">3</a>
+               <a class ="button" onclick="operation('-')">-</a>
+          </div>
+          <br/>
+          <div class ="button-bar">
+              <a class ="button" onclick="display('0')">0</a>
+              <a class ="button" onclick="display('.')">.</a>
+              <a class ="button" onclick="operation('+')">+</a>
+          </div>
+          <br/>
+          <div class ="button-bar">
+           <a class ="button" onclick="calculate('=')">=</a>
+           <a class ="button" onclick="reset()">reset</a>
+          </div>
+      </ion-content>
+    </ion-pane>
+    <script>
+        memory = 0;
+        current = 0;
+        operations = 0;
+        output = 0;
+        function display(value){
+            document.getElementById("life").innerHTML += value;
+        }
+        
+        function operation(values){
+          memory = document.getElementById("life").innerHTML;
+          //console.log(memory);
+          document.getElementById("life").innerHTML = "";
+          operations = values;
+          //console.log(operations);  
+        }
+        
+        function calculate(data)
+        {
+            current = document.getElementById("life").innerHTML;
+            //console.log(current);
+            
+            if(operations === '/')
+            {
+                output = memory / current;
+                //console.log(output);
+            }
+            
+            else if(operations === '*')
+            {
+                output = memory * current;
+                //console.log(output);
+            }
+            
+            else if(operations === '-')
+            {
+                output = memory - current;
+                //console.log(output);
+            }
+            
+            else if(operations === '+')
+            {
+                output = +memory + +current;
+                //console.log(output);
+            }
+            
+            document.getElementById("life").innerHTML = output;
+            
+        }
+        
+        function reset()
+        {
+            document.getElementById("life").innerHTML = "";
+        }
+        
+        </script>
+  </body>
+</html>
